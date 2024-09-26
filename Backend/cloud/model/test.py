@@ -24,7 +24,7 @@ from keras.preprocessing import image
 best_model = load_model('MyModel.keras')
 
 # Load and preprocess the image
-img_path = 'image.jpg'  # Update with your image path
+img_path = 'image.jpeg'  # Update with your image path
 img = image.load_img(img_path, target_size=(224, 224))
 img_array = image.img_to_array(img)
 img_array = np.expand_dims(img_array, axis=0)
