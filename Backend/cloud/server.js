@@ -10,6 +10,7 @@ const port = 7898;
 
 // Configure middleware
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Create a MySQL connection pool
 const pool = mysql.createPool({
@@ -26,10 +27,8 @@ const pool = mysql.createPool({
 module.exports.pool = pool;
 
 // Import routes
-
-
-// Use routes
-
+const imageRouter = require('./routes/imageRouter');
+app.use('/images', imageRouter);
 
 // SSL options
 const options = {
