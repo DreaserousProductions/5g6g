@@ -6,7 +6,7 @@ const mysql = require('mysql2');
 const bodyParser = require('body-parser');
 
 const app = express();
-const port = 7898;
+const port = 443;
 
 // Configure middleware
 app.use(bodyParser.json());
