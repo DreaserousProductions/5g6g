@@ -123,6 +123,7 @@ router.post('/', upload.single('image'), (req, res) => {
             const animalName = Object.keys(animalMapping).find(key => animalMapping[key] === parseInt(nextLine));
 
             console.log(stdout);
+            console.log(stdout[stdout.length - 3]);
             console.log(nextLine);
             // console.log(predictedClass);
             console.log(animalName);
