@@ -76,6 +76,26 @@ router.post('/', upload.single('image'), (req, res) => {
             };
 
             const animalName = Object.keys(animalMapping).find(key => animalMapping[key] === parseInt(nextLine));
+
+            if (nextLine === '22' || nextLine === '71') {
+                // Send notification to Flutter app
+                const message = {
+                    notification: {
+                        title: 'Animal Detected',
+                        body: 'A bear has been detected in the uploaded image!',
+                    },
+                    topic: 'animal-detection' // Subscribe your Flutter app to this topic
+                };
+
+                admin.messaging().send(message)
+                    .then((response) => {
+                        console.log('Notification sent successfully:', response);
+                    })
+                    .catch((error) => {
+                        console.error('Error sending notification:', error);
+                    });
+            }
+
             res.status(200).json({ message: 'Image uploaded successfully', predictedClass: animalName });
         });
     });
