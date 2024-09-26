@@ -1,5 +1,10 @@
 import sys
 import numpy as np
+
+# A libraries to avoid keras and tensorflow warnings
+from silence_tensorflow import silence_tensorflow
+silence_tensorflow()
+
 from keras.models import load_model
 from keras.preprocessing import image
 
