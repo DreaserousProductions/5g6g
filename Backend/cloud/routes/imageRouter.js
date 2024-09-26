@@ -24,12 +24,12 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.get('/upload', (req, res) => {
+router.get('/', (req, res) => {
     res.json({ message: 'Image Router Working' });
 });
 
 // Route to handle image upload
-router.post('/upload', upload.single('image'), (req, res) => {
+router.post('/', upload.single('image'), (req, res) => {
     const imagePath = req.file.path;
     const logEntry = {
         image_path: imagePath,

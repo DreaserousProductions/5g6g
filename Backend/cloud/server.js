@@ -28,7 +28,7 @@ module.exports.pool = pool;
 
 // Import routes
 const imageRouter = require('./routes/imageRouter');
-app.use('/images', imageRouter);
+app.use('/raspberryImage', imageRouter);
 
 // SSL options
 const options = {
