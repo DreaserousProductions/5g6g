@@ -24,4 +24,5 @@ predictions = best_model.predict(img_array)
 
 # Output the predicted class
 predicted_class = np.argmax(predictions)
+print("!!$C")
 print(predicted_class)
