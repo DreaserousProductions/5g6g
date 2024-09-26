@@ -113,6 +113,8 @@ router.post('/', upload.single('image'), (req, res) => {
 
             const animalName = Object.keys(animalMapping).find(key => animalMapping[key] === parseInt(predictedClass));
 
+            console.log(stdout);
+            console.log(lines);
             console.log(predictedClass);
             console.log(animalName);
             res.status(200).json({ message: 'Image uploaded successfully', predictedClass: animalName });
