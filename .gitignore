@@ -1,1 +1,5 @@
 *.dre
+*.ipynb
+cronos.pem
+ec2-user@
+SECRETS
