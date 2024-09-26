@@ -32,8 +32,8 @@ app.use('/images', imageRouter);
 
 // SSL options
 const options = {
-    key: fs.readFileSync('/etc/letsencrypt/live/evergladefoundation.tech/privkey.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/evergladefoundation.tech/fullchain.pem')
+    key: fs.readFileSync('selfsigned.key'),
+    cert: fs.readFileSync('selfsigned.crt')
 };
 
 // Start HTTPS server
