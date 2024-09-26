@@ -1,5 +1,6 @@
 *.dre
 *.ipynb
+*.keras
 cronos.pem
 ec2-user@
 SECRETS
