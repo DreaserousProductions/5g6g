@@ -97,7 +97,7 @@ router.post('/', upload.single('image'), (req, res) => {
         }
 
         // Call Python script for prediction
-        exec(`/home/ec2-user/miniconda3/bin/conda run -n kratos python predict.py "${imagePath}"`, (error, stdout, stderr) => {
+        exec(`/home/ec2-user/miniconda3/bin/conda run -n kratos python3 predict.py "${imagePath}"`, (error, stdout, stderr) => {
             if (error) {
                 console.error('Error executing Python script:', error);
                 return res.status(500).json({ error: 'Prediction error' });
