@@ -52,6 +52,7 @@ function startRtmpServer() {
             hls: {
                 port: 8080,
                 allow_origin: '*',
+
             },
         };
         nms = new NodeMediaServer(config);
