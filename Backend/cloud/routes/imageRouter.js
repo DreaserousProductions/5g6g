@@ -84,7 +84,7 @@ router.post('/', upload.single('image'), (req, res) => {
                         title: 'Animal Detected',
                         body: 'A bear has been detected in the uploaded image!',
                     },
-                    topic: 'animal-detection' // Subscribe your Flutter app to this topic
+                    topic: 'animal-alert' // Subscribe your Flutter app to this topic
                 };
 
                 admin.messaging().send(message)
