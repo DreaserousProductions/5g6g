@@ -5,6 +5,7 @@ const path = require('path');
 const { pool } = require('../server'); // Adjust the path based on your structure
 const { exec } = require('child_process'); // For running the Python script
 const admin = require('firebase-admin'); // Import Firebase Admin
+const NodeMediaServer = require('node-media-server');
 
 const router = express.Router();
 
@@ -31,6 +32,32 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+
+let nms;
+function startRtmpServer() {
+    if (!nms) {
+        const config = {
+            rtmp: {
+                port: 7898,
+                chunk_size: 60000,
+                gop_cache: true,
+                ping: 30,
+                ping_timeout: 60,
+                allow_origin: '*',
+            },
+            http: {
+                port: 8000,
+                allow_origin: '*',
+            },
+            hls: {
+                port: 8080,
+                allow_origin: '*',
+            },
+        };
+        nms = new NodeMediaServer(config);
+        nms.run();
+    }
+}
 
 router.get('/', (req, res) => {
     res.json({ message: 'Image Router Working' });
@@ -80,6 +107,8 @@ router.post('/', upload.single('image'), (req, res) => {
             console.log(animalName);
             console.log(nextLine);
             if (animalName) {
+                startRtmpServer();
+
                 res.status(200).json({ message: 'Animal Detected', predictedClass: animalName, predictedClassNum: parseInt(nextLine) });
 
                 // Send notification to Flutter app
