@@ -112,6 +112,7 @@ router.post('/', upload.single('image'), (req, res) => {
             const animalName = Object.keys(animalMapping).find(key => animalMapping[key] === parseInt(nextLine));
 
             console.log(animalName);
+            console.log(certain);
             console.log(nextLine);
             if (animalName && (nextLine === '46' || nextLine === '22' || nextLine === '71') && parseFloat(certain) > 0.9) {
                 startRtmpServer();
