@@ -3,11 +3,20 @@ const https = require('https');
 const fs = require('fs');
 const express = require('express');
 const mysql = require('mysql2');
+const cors = require('cors'); // Import the CORS package
 const bodyParser = require('body-parser');
 const path = require('path');
 
 const app = express();
 const port = 443;
+
+const corsOptions = {
+    origin: '*', // Replace with your allowed origin
+    methods: ['*'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+app.use(cors(corsOptions));
 
 // Configure middleware
 app.use(bodyParser.json());
