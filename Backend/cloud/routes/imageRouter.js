@@ -96,7 +96,11 @@ router.post('/', upload.single('image'), (req, res) => {
 
             console.log(animalName);
             console.log(nextLine);
-            res.status(200).json({ message: 'Image uploaded successfully', predictedClass: animalName, predictedClassNum: parseInt(nextLine) });
+            if (animalName) {
+                res.status(200).json({ message: 'Animal Detected', predictedClass: animalName, predictedClassNum: parseInt(nextLine) });
+            } else {
+                res.status(201).json({ message: 'No Animal Detected' });
+            }
         });
     });
 });
