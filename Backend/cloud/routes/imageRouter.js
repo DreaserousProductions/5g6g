@@ -95,10 +95,12 @@ router.post('/', upload.single('image'), (req, res) => {
             // const predictedClass = lines[lines.length - 3].trim();
 
             let nextLine = null;
+            let certain = null;
 
             for (let i = 0; i < lines.length; i++) {
                 if (lines[i] === '!!$C' && i + 1 < lines.length) {
                     nextLine = lines[i + 1].trim();
+                    certain = lines[i + 2].trim();
                     break; // Stop after finding the next line
                 }
             }
@@ -111,7 +113,7 @@ router.post('/', upload.single('image'), (req, res) => {
 
             console.log(animalName);
             console.log(nextLine);
-            if (animalName && (nextLine === '46' || nextLine === '22' || nextLine === '71')) {
+            if (animalName && (nextLine === '46' || nextLine === '22' || nextLine === '71') && parseFloat(certain) > 0.9) {
                 startRtmpServer();
 
                 res.status(200).json({ message: 'Animal Detected', predictedClass: animalName, predictedClassNum: parseInt(nextLine) });
