@@ -12,7 +12,7 @@ const port = 443;
 
 const corsOptions = {
     origin: '*', // Replace with your allowed origin
-    methods: ['*'],
+    methods: '*',
     allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
