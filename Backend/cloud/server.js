@@ -11,11 +11,10 @@ const app = express();
 const port = 443;
 
 const corsOptions = {
-    origin: '*', // Replace with your allowed origin
-    methods: '*',
+    origin: '*', // Allow any origin
+    methods: 'GET,POST,OPTIONS',
     allowedHeaders: ['Content-Type', 'Authorization'],
 };
-
 app.use(cors(corsOptions));
 
 // Configure middleware
