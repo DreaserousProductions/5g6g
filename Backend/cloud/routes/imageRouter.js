@@ -77,27 +77,27 @@ router.post('/', upload.single('image'), (req, res) => {
 
             const animalName = Object.keys(animalMapping).find(key => animalMapping[key] === parseInt(nextLine));
 
-            // Send notification to Flutter app
-            const message = {
-                notification: {
-                    title: 'Animal Detected',
-                    body: `A ${animalName ? animalName : nextLine} has been detected in the uploaded image!`,
-                },
-                topic: 'animal-alert' // Subscribe your Flutter app to this topic
-            };
-
-            admin.messaging().send(message)
-                .then((response) => {
-                    console.log('Notification sent successfully:', response);
-                })
-                .catch((error) => {
-                    console.error('Error sending notification:', error);
-                });
-
             console.log(animalName);
             console.log(nextLine);
             if (animalName) {
                 res.status(200).json({ message: 'Animal Detected', predictedClass: animalName, predictedClassNum: parseInt(nextLine) });
+
+                // Send notification to Flutter app
+                const message = {
+                    notification: {
+                        title: 'Animal Detected',
+                        body: `A ${animalName ? animalName : nextLine} has been detected in the uploaded image!`,
+                    },
+                    topic: 'animal-alert' // Subscribe your Flutter app to this topic
+                };
+
+                admin.messaging().send(message)
+                    .then((response) => {
+                        console.log('Notification sent successfully:', response);
+                    })
+                    .catch((error) => {
+                        console.error('Error sending notification:', error);
+                    });
             } else {
                 res.status(201).json({ message: 'No Animal Detected' });
             }
