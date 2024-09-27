@@ -4,6 +4,7 @@ const fs = require('fs');
 const express = require('express');
 const mysql = require('mysql2');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
 const port = 443;
@@ -11,6 +12,8 @@ const port = 443;
 // Configure middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(express.json({ limit: '10mb' })); // Adjust the limit as needed
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
@@ -31,7 +34,10 @@ module.exports.pool = pool;
 
 // Import routes
 const imageRouter = require('./routes/imageRouter');
+const liveRouter = require('./routes/live');
+
 app.use('/raspberryImage', imageRouter);
+app.use('/live-stream', liveRouter);
 
 // SSL options
 const options = {
