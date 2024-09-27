@@ -52,7 +52,10 @@ function startRtmpServer() {
             hls: {
                 port: 8080,
                 allow_origin: '*',
-
+                path: '/media/hls',  // This is where HLS manifests will be available
+                hls_time: 2,
+                hls_list_size: 3,
+                hls_flags: 'delete_segments',
             },
         };
         nms = new NodeMediaServer(config);
@@ -108,7 +111,7 @@ router.post('/', upload.single('image'), (req, res) => {
 
             console.log(animalName);
             console.log(nextLine);
-            if (animalName) {
+            if (animalName && (nextLine === '46' || nextLine === '22' || nextLine === '71')) {
                 startRtmpServer();
 
                 res.status(200).json({ message: 'Animal Detected', predictedClass: animalName, predictedClassNum: parseInt(nextLine) });

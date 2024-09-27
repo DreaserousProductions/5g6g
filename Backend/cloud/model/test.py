@@ -21,7 +21,7 @@ from keras.models import load_model
 from keras.preprocessing import image
 
 # Load the model
-best_model = load_model('MyModel.keras')
+best_model = load_model('trueModel.keras')
 
 # Load and preprocess the image
 img_path = 'imageX.png'  # Update with your image path
