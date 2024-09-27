@@ -55,6 +55,7 @@ function startRtmpServer() {
             },
         };
         nms = new NodeMediaServer(config);
+        console.log("STart nms");
         nms.run();
     }
 }
