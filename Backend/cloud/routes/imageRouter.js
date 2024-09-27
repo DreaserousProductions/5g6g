@@ -96,6 +96,8 @@ router.post('/', upload.single('image'), (req, res) => {
                     });
             }
 
+            console.log(animalName);
+            console.log(nextLine);
             res.status(200).json({ message: 'Image uploaded successfully', predictedClass: animalName });
         });
     });
